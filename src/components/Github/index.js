@@ -19,20 +19,20 @@ export default class Github extends Component {
   fetchUser (e) {
     e.preventDefault()
 
-    var user = gh.getUser(this.state.user)
-
-    return user.listRepos()
-      .then(res => this.setState({repos: res.data}))
+    return gh
+      .getUser(this.state.user)
+      .listRepos()
+      .then(res => this.setState({ repos: res.data }))
   }
 
   render ({}, { user, repos }) {
     return (
-      <div class={style.container}>
+      <div class={ style.container }>
         <h2>{ user }</h2>
         <div>
-          <form onSubmit={ this.fetchUser } class={style.collector}>
-            <input onInput={this.linkState('user')} type="text" placeholder="user" value={ user }></input>
-            <button type="submit" class={style.fetchbttn}>Fetch</button>
+          <form onSubmit={ this.fetchUser } class={ style.collector }>
+            <input onInput={ this.linkState('user') } value={ user } type="text" placeholder="user"></input>
+            <button class={ style.fetchbttn } type="submit">Fetch</button>
           </form>
         </div>
         <RepoList repos={ repos } />
