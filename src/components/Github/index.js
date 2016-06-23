@@ -16,7 +16,9 @@ export default class Github extends Component {
   }
 
   @bind
-  fetchUser () {
+  fetchUser (e) {
+    e.preventDefault()
+
     var user = gh.getUser(this.state.user)
 
     return user.listRepos()
@@ -27,9 +29,11 @@ export default class Github extends Component {
     return (
       <div class={style.container}>
         <h2>{ user }</h2>
-        <div class={style.collector}>
-          <input onInput={this.linkState('user')} type="text" placeholder="user" value={ user }></input>
-          <button class={style.fetchbttn} onClick={ this.fetchUser }>Fetch</button>
+        <div>
+          <form onSubmit={ this.fetchUser } class={style.collector}>
+            <input onInput={this.linkState('user')} type="text" placeholder="user" value={ user }></input>
+            <button type="submit" class={style.fetchbttn}>Fetch</button>
+          </form>
         </div>
         <RepoList repos={ repos } />
       </div>
