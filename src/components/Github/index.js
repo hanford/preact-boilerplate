@@ -1,29 +1,38 @@
 import { h, Component } from 'preact'
-import style from './style'
+import { bind } from 'decko'
 import GitHub from 'github-api'
 
-const gh = new GitHub()
+import RepoList from '../repo-list'
+import style from './style'
 
+const gh = new GitHub({
+  token: process.env.GH
+})
 
 export default class Github extends Component {
-	state = {
-		user: '',
-		repos: []
-	}
+  state = {
+    user: 'hanford',
+    repos: []
+  }
 
-	fetchUser () {
-		var user = gh.getUser(this.state.user)
-		user.listRepos().then(function (err, data) {
-			console.log(data)
-		})
-	}
+  @bind
+  fetchUser () {
+    var user = gh.getUser(this.state.user)
 
-	render ({}, {login, password}) {
-		return (
-			<div class={style.container}>
-				<input onInput={this.linkState('user')} type="text" placeholder="user"></input>
-				<button onClick={ ::this.fetchUser }>login</button>
-			</div>
-		)
-	}
+    return user.listRepos()
+      .then(res => this.setState({repos: res.data}))
+  }
+
+  render ({}, { user, repos }) {
+    return (
+      <div class={style.container}>
+        <h2>{ user }</h2>
+        <div class={style.collector}>
+          <input onInput={this.linkState('user')} type="text" placeholder="user" value={ user }></input>
+          <button class={style.fetchbttn} onClick={ this.fetchUser }>Fetch</button>
+        </div>
+        <RepoList repos={ repos } />
+      </div>
+    )
+  }
 }

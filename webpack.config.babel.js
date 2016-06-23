@@ -3,7 +3,10 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 
+var argv = require('yargs').argv
+
 const ENV = process.env.NODE_ENV || 'development';
+const GH_OAUTH = argv.GH || ''
 
 const CSS_MAPS = ENV!=='production';
 
@@ -91,7 +94,10 @@ module.exports = {
 		}),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.DefinePlugin({
-			'process.env': JSON.stringify({ NODE_ENV: ENV })
+			'process.env': JSON.stringify({
+				NODE_ENV: ENV,
+				GH: GH_OAUTH
+			})
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.html',

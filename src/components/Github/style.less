@@ -1,9 +1,41 @@
 @import '~style/helpers';
 
 .container {
-	flex-direction: column;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: 100px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  padding-top: 70px;
+  height: 100%;
+}
+
+.fetchbttn {
+  padding: 8px 16px;
+  background-color: #7242bf;
+  border: transparent;
+  color: white;
+  font-weight: 700;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.collector {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  min-height: 40px;
+  padding-bottom: 16px;
+  flex-shrink: 0;
+
+  input {
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    padding: 8px;
+    width: 100%;
+    display: flex;
+  }
+
+  button {
+    margin-left: 8px;
+  }
 }

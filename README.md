@@ -1,4 +1,6 @@
-# Preact Boilerplate / Starter Kit
+Small preact boilerplate modified to display a github users repos, simply run ```npm run dev GH_OAUTH_TOKEN``` to start the dev environment
+
+# Preact Boilerplate
 
 [![Build Status](https://travis-ci.org/developit/preact-boilerplate.svg?branch=master)](https://travis-ci.org/developit/preact-boilerplate)
 [![gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/developit/preact)
@@ -58,7 +60,7 @@ npm install
 **4. Start a live-reload development server:**
 
 ```sh
-PORT=8080 npm run dev
+npm run dev GITHUB_OAUTH_TOKEN
 ```
 
 > This is a full web server nicely suited to your project. Any time you make changes within the `src` directory, it will rebuild and even refresh your browser.

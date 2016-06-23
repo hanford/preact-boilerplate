@@ -1,11 +1,10 @@
-import { h, Component } from 'preact';
-import { Router } from 'preact-router';
+import { h, Component } from 'preact'
+import { Router } from 'preact-router'
 
-import Header from './header';
-import Home from './home';
-import Profile from './profile';
-import Github from './Github'
-
+import Header from './header'
+import Home from './home'
+import Profile from './profile'
+import Github from './github'
 
 export default class App extends Component {
 	/** Gets fired when the route changes.
