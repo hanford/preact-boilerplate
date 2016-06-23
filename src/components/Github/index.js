@@ -15,9 +15,8 @@ export default class Github extends Component {
     repos: []
   }
 
-  @bind
-  fetchUser (e) {
-    e.preventDefault()
+  @bind fetchUser (event) {
+    event.preventDefault()
 
     return gh
       .getUser(this.state.user)
